@@ -3,10 +3,9 @@
 1. Get Ubuntu corpus dataset from "https://s3.amazonaws.com/ngv-public/data.zip"
 
 2. Install python 3.6 and install requirements from requirements.txt
-
+```
 pip install -r requirements.txt
-source activate ml
-
+```
 
 3. Update the path variables with links to the data and where you want to save model output in main.py
 ```
