@@ -53,32 +53,23 @@ class UDCDataset(object):
         return self.__data_generator(len(self.test_x), self.test_x, self.test_y, batch_size, max_epochs)
 
     def __data_generator(self, num_datapoints, x, y, batch_size, max_epochs=None):
-        """
-        Read the h5 buckets
 
-        :param data_type:
-        :param batch_size:
-        :param max_epochs:
-        :return:
-        """
-        # figure out which dataset to use
         epoch = 0
         while True:
             for batch_num in range(0, num_datapoints, batch_size):
-                # calc pointer to next batch
+               
                 i = batch_num
                 i_end = i + batch_size
 
-                # make sure we always have a batch of at least batch size
-                # fill the rest of the batch with zeros
+                
                 batch_x = x[i: i_end].astype(np.int32)
                 batch_y = y[i: i_end].astype(np.int32)
 
-                # serve only batches of the proper size
+                
                 if len(batch_x) == batch_size:
                     yield batch_x, batch_y
 
-            # stop generator once we go over max epochs
+         
             epoch += 1
             if max_epochs is not None and epoch >= max_epochs:
                 break
@@ -119,7 +110,7 @@ class Tokenizer(object):
 
             results.append(idx)
 
-        # reverse and ensure we cut off or pad
+
         results = results[::-1][:self.max_seq_len]
         results.extend([0] * (self.max_seq_len - len(results)))
         return np.asarray(results)
